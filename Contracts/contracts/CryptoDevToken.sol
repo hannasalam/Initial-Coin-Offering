@@ -18,7 +18,7 @@ contract CryptoDevToken is ERC20,Ownable {
 
     function mint(uint256 amount) public payable {
         uint256 _requiredAmount = tokenPrice*amount;
-        require(msg.value>_requiredAmount, "Ethers sent is incorrect");
+        require(msg.value>=_requiredAmount, "Ethers sent is incorrect");
         uint256 amountWithDecimals = amount*10**18;
         require(amountWithDecimals+totalSupply()<=maxTotalSupply,"Exceeds the max total supply available");
         _mint(msg.sender, amountWithDecimals);
